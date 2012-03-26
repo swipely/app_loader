@@ -1,10 +1,4 @@
-(function () {
-
-  var SLOW_TIMEOUT  = 10000,
-      ERROR_TIMEOUT = 20000,
-
-      SLOW_TEXT     = 'The rescue is going slower than expected..',
-      ERROR_TEXT    = 'The rescue missing has failed ☹. Something bad happened. Try to <a href="/">refresh</a> or come back later.';
+(function (context) {
 
   /**
   @method bind
@@ -44,13 +38,29 @@
   // --------------------------------- //
 
   /**
+  @constructor AppLoader
   **/
-  var Loader = function () {
-    this.initializer();
+  var AppLoader = function () {
+    this.initializer.apply(this, arguments);
   };
 
-  Loader.prototype = {
-    initializer: function () {
+  AppLoader.prototype = {
+
+    // default configuration
+    slowTimeout:  10000, // 10 sec
+    errorTimeout: 20000, // 20 sec
+    slowText:     'The rescue is going slower than expected..',
+    errorText:    'The rescue mission has failed ☹. Something bad happened. Try to <a href="/">refresh</a> or come back later.',
+
+    initializer: function (config) {
+      config = config || {};
+
+      // overwrite default config
+      if ('slowTimeout'   in config)  this.slowTimeout  = config.slowTimeout;
+      if ('errorTimeout'  in config)  this.errorTimeout = config.errorTimeout;
+      if ('slowText'      in config)  this.slowText     = config.slowText;
+      if ('errorText'     in config)  this.errorText    = config.errorText;
+
       this.container  = DOM.one('.app_loader');
       this.feedback   = DOM.one('.feedback', this.container);
     
@@ -58,8 +68,8 @@
     },
 
     _startTimers: function () {
-      setTimeout(bind(this.handleSlowness, this), SLOW_TIMEOUT);
-      setTimeout(bind(this.handleErroneus, this), ERROR_TIMEOUT);
+      setTimeout(bind(this.handleSlowness, this), this.slowTimeout);
+      setTimeout(bind(this.handleErroneus, this), this.errorTimeout);
     },
 
     handleSlowness: function () {
@@ -69,7 +79,7 @@
       if (container) {
         DOM.addClass(this.container, 'slow');
 
-        feedback.innerHTML = SLOW_TEXT;
+        feedback.innerHTML = this.slowText;
       }
 
     },
@@ -79,10 +89,10 @@
           feedback  = this.feedback;
 
       if (container) {
-        DOM.removeClass(container, 'slow');
-        DOM.addClass(container, 'error');
+        DOM.removeClass(container,  'slow');
+        DOM.addClass(container,     'error');
 
-        feedback.innerHTML = ERROR_TEXT;
+        feedback.innerHTML = this.errorText;
       }
     },
 
@@ -100,6 +110,10 @@
     }
   };
 
-  new Loader();
+  var Swipely = {
+    AppLoader: AppLoader
+  };
 
-}());
+  context.Swipely = Swipely;
+
+}(this));

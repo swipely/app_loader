@@ -3,7 +3,8 @@
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
-    <link rel="stylesheet" type="text/css" href="loader.css" /> 
+    <link rel="stylesheet" type="text/css" href="css/base.css" /> 
+    <link rel="stylesheet" type="text/css" href="css/app_loader.css" /> 
   </head>
   <body> 
 
@@ -22,6 +23,10 @@
       <h1>Application behind the loader</h1>
     </div>
 
-    <script src='loader.js'></script>
+    <script src='js/lib/app_loader.js'></script>
+    <script>
+      new Swipely.AppLoader();
+    </script>
+
   </body> 
 </html>
