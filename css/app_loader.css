@@ -1,4 +1,4 @@
-.app_loader { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999; font-size: 32px; line-height: 32px; font-weight: bold; background: url(../img/blue_noise.png);
+.app_loader { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999; font-size: 32px; line-height: 32px; font-weight: bold; background: #00669e url(../img/blue_noise.png);
   color: rgba(0, 0, 0, 0.4);
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
   opacity: 1;
