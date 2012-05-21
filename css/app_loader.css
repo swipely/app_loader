@@ -40,7 +40,6 @@
   background: -o-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.15) 0%,rgba(255,255,255,0) 74%);
   background: -ms-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.15) 0%,rgba(255,255,255,0) 74%);
   background: radial-gradient(center, ellipse cover,  rgba(255,255,255,0.15) 0%,rgba(255,255,255,0) 74%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26ffffff', endColorstr='#00ffffff',GradientType=1 );
 }
 
 .app_loader .logo { background: url(../img/logo.png) no-repeat; width: 263px; height: 100px; text-indent: -9999px; margin: auto; 
